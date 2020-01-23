@@ -13,11 +13,3 @@ class Food(GameObject):
 
     def getRandomLocation(self):
         return random.randrange(0, 500, 10)
-    
-    def setNewLocation(self):
-        print(GameObject.location)
-        GameObject.location = (self.getRandomLocation(), self.getRandomLocation())
-        print(GameObject.location)
-
-        
-        
