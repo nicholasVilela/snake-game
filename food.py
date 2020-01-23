@@ -12,4 +12,5 @@ class Food(GameObject):
         )
 
     def getRandomLocation(self):
-        return [random.range(constants.screenX, constants.screenY, 10)]
+        return random.randrange(0, 500, 10)
+        

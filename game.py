@@ -23,6 +23,7 @@ class Game():
             self.ticks += 1
             self.eventController()
             self.inputController()
+            self.foodController()
             self.updateController()
             self.drawController(display)
 
@@ -51,8 +52,8 @@ class Game():
     def drawController(self, display):
         display.fill((0, 0, 0))
 
-        for gameObject in [self.player]:
-            gameObject.draw(display)
+        self.player.draw(display)
+        self.food.draw(display)
 
         pygame.display.flip();
 
