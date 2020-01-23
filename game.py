@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 from food import Food
+from location import Location
 import constants
 
 class Game():
@@ -22,6 +23,7 @@ class Game():
             clock.tick(15)
             self.ticks += 1
             self.eventController()
+            self.collisionController()
             self.inputController()
             self.foodController()
             self.updateController()
@@ -55,10 +57,17 @@ class Game():
         self.player.draw(display)
         self.food.draw(display)
 
-        pygame.display.flip();
+        pygame.display.flip()
 
     def updateController(self):
         self.player.update()
 
+    def collisionController(self):
+        if (self.player.location.x == self.food.location.x) and (self.player.location.y == self.food.location.y):
+            self.points += 1
+            self.foodExists = False
+
     def foodController(self):
-        pass
+        if self.foodExists == False:
+            self.food.updateLocation(Location(self.food.getRandomLocation(), self.food.getRandomLocation()))
+            self.foodExists = True

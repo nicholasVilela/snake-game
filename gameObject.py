@@ -10,6 +10,12 @@ class GameObject():
     def isAlive(self):
         return self.alive
 
+    def getLocation(self):
+        return self.location
+
+    def updateLocation(self, location):
+        self.location = location
+
     def update(self, direction, speed):
         self.location.update(direction, speed)
 
