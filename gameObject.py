@@ -11,7 +11,7 @@ class GameObject():
         return self.alive
 
     def getLocation(self):
-        return self.location
+        return (self.location.x, self.location.y)
 
     def updateLocation(self, location):
         self.location = location

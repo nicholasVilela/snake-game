@@ -63,7 +63,7 @@ class Game():
         self.player.update()
 
     def collisionController(self):
-        if (self.player.location.x == self.food.location.x) and (self.player.location.y == self.food.location.y):
+        if self.player.getLocation() == self.food.getLocation():
             self.points += 1
             self.foodExists = False
 
