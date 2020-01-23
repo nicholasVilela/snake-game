@@ -13,6 +13,12 @@ class GameObject():
     def getLocation(self):
         return (self.location.x, self.location.y)
 
+    def getLocationX(self):
+        return self.location.x
+
+    def getLocationY(self):
+        return self.location.y
+
     def updateLocation(self, location):
         self.location = location
 

@@ -57,6 +57,10 @@ class Game():
         self.player.draw(display)
         self.food.draw(display)
 
+        if len(self.player.tail) > 0:
+            for tail in self.player.tail:
+                tail.draw(display)
+
         pygame.display.flip()
 
     def updateController(self):
@@ -65,6 +69,7 @@ class Game():
     def collisionController(self):
         if self.player.getLocation() == self.food.getLocation():
             self.points += 1
+            self.player.addTail(Location(self.player.getLocationX() + 1, self.player.getLocationY()))
             self.foodExists = False
 
     def foodController(self):
