@@ -26,8 +26,35 @@ class Player(GameObject):
             tail = Tail(
                 Location(
                     self.getLocationX(),
+                    self.getLocationY() - 10
+                ),
+                './images/snake-image.png'
+            )
+        if self.direction == constants.upDir:
+            tail = Tail(
+                Location(
+                    self.getLocationX(),
                     self.getLocationY() + 10
                 ),
                 './images/snake-image.png'
             )
-            self.tail.append(tail)
+
+        if self.direction == constants.leftDir:
+            tail = Tail(
+                Location(
+                    self.getLocationX() + 10,
+                    self.getLocationY()
+                ),
+                './images/snake-image.png'
+            )
+
+        if self.direction == constants.rightDir:
+            tail = Tail(
+                Location(
+                    self.getLocationX() - 10,
+                    self.getLocationY()
+                ),
+                './images/snake-image.png'
+            )
+
+        self.tail.append(tail)
