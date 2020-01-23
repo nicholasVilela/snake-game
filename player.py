@@ -21,9 +21,13 @@ class Player(GameObject):
     def updateDirection(self, direction):
         self.direction = direction
 
-    def addTail(self, location):
-        tail = Tail(location, './images/snake-image.png')
-
-        self.tail.append(tail)
-
-        print(self.tail)
+    def addTail(self):
+        if self.direction == constants.downDir:
+            tail = Tail(
+                Location(
+                    self.getLocationX(),
+                    self.getLocationY() + 10
+                ),
+                './images/snake-image.png'
+            )
+            self.tail.append(tail)

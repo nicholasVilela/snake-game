@@ -69,7 +69,7 @@ class Game():
     def collisionController(self):
         if self.player.getLocation() == self.food.getLocation():
             self.points += 1
-            self.player.addTail(Location(self.player.getLocationX() + 1, self.player.getLocationY()))
+            self.player.addTail()
             self.foodExists = False
 
     def foodController(self):
