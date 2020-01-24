@@ -10,6 +10,9 @@ class GameObject():
     def isAlive(self):
         return self.alive
 
+    def returnSelf(self):
+        return self
+
     def getLocation(self):
         return (self.location.x, self.location.y)
 

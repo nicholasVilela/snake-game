@@ -7,3 +7,6 @@ class Tail(GameObject):
             location,
             image
         )
+
+    def update(self, direction, speed):
+        GameObject.update(self, direction, speed)

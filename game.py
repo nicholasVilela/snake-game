@@ -42,32 +42,32 @@ class Game():
             self.running = False
             return
 
-        if keyInput[pygame.K_UP] and self.player.direction != constants.downDir:
-            self.player.updateDirection(constants.upDir)
-        if keyInput[pygame.K_DOWN] and self.player.direction != constants.upDir:
-            self.player.updateDirection(constants.downDir)
-        if keyInput[pygame.K_LEFT] and self.player.direction != constants.rightDir:
-            self.player.updateDirection(constants.leftDir)
-        if keyInput[pygame.K_RIGHT] and self.player.direction != constants.leftDir:
-            self.player.updateDirection(constants.rightDir)
+        if keyInput[pygame.K_UP] and self.player.head.direction != constants.downDir:
+            self.player.head.updateDirection(constants.upDir)
+        if keyInput[pygame.K_DOWN] and self.player.head.direction != constants.upDir:
+            self.player.head.updateDirection(constants.downDir)
+        if keyInput[pygame.K_LEFT] and self.player.head.direction != constants.rightDir:
+            self.player.head.updateDirection(constants.leftDir)
+        if keyInput[pygame.K_RIGHT] and self.player.head.direction != constants.leftDir:
+            self.player.head.updateDirection(constants.rightDir)
 
     def drawController(self, display):
         display.fill((0, 0, 0))
 
-        self.player.draw(display)
         self.food.draw(display)
 
-        if len(self.player.tail) > 0:
-            for tail in self.player.tail:
-                tail.draw(display)
+        for tail in self.player.body:
+            tail.draw(display)
 
         pygame.display.flip()
 
     def updateController(self):
-        self.player.update()
+        for tail in self.player.body:
+            tail.update()
+                
 
     def collisionController(self):
-        if self.player.getLocation() == self.food.getLocation():
+        if self.player.head.getLocation() == self.food.getLocation():
             self.points += 1
             self.player.addTail()
             self.foodExists = False
