@@ -43,13 +43,13 @@ class Game():
             return
 
         if keyInput[pygame.K_UP] and self.player.head.direction != constants.downDir:
-            self.player.head.updateDirection(constants.upDir)
+            self.player.head.cube.updateDirection(constants.upDir)
         if keyInput[pygame.K_DOWN] and self.player.head.direction != constants.upDir:
-            self.player.head.updateDirection(constants.downDir)
+            self.player.head.cube.updateDirection(constants.downDir)
         if keyInput[pygame.K_LEFT] and self.player.head.direction != constants.rightDir:
-            self.player.head.updateDirection(constants.leftDir)
+            self.player.head.cube.updateDirection(constants.leftDir)
         if keyInput[pygame.K_RIGHT] and self.player.head.direction != constants.leftDir:
-            self.player.head.updateDirection(constants.rightDir)
+            self.player.head.cube.updateDirection(constants.rightDir)
 
     def drawController(self, display):
         display.fill((0, 0, 0))
@@ -57,17 +57,18 @@ class Game():
         self.food.draw(display)
 
         for tail in self.player.body:
-            tail.draw(display)
+            tail.cube.draw(display)
 
         pygame.display.flip()
 
     def updateController(self):
         for tail in self.player.body:
-            tail.update()
-                
+            tail.cube.update()
+            if tail.forward != None:
+                tail.cube.updateTailLocation(tail.forward.cube.getDirection(), 10)
 
     def collisionController(self):
-        if self.player.head.getLocation() == self.food.getLocation():
+        if self.player.body[0].cube.getLocation() == self.food.getLocation():
             self.points += 1
             self.player.addTail()
             self.foodExists = False
